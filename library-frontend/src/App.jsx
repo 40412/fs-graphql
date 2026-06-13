@@ -11,6 +11,7 @@ const App = () => {
   const [token, setToken] = useState(
     localStorage.getItem("library-user-token"),
   );
+  const [errorMessage, setErrorMessage] = useState(null);
   const client = useApolloClient();
 
   const notify = (msg) => {
@@ -27,9 +28,13 @@ const App = () => {
 
   return (
     <div>
+      {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
+
       <div>
         <button onClick={() => setPage("authors")}>authors</button>
-        <button onClick={() => setPage("books")}>books</button>
+        <button name="books" onClick={() => setPage("books")}>
+          books
+        </button>
         {!token && <button onClick={() => setPage("login")}>login</button>}
 
         {token && (

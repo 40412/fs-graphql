@@ -13,7 +13,7 @@ const LoginForm = ({ setToken, setError }) => {
       localStorage.setItem("library-user-token", token);
     },
     onError: (error) => {
-      setError(error.message);
+      setError("login failed");
     },
   });
 
@@ -23,24 +23,30 @@ const LoginForm = ({ setToken, setError }) => {
   };
 
   return (
-    <form onSubmit={submit}>
-      <div>
-        username
-        <input
-          value={username}
-          onChange={({ target }) => setUsername(target.value)}
-        />
-      </div>
-      <div>
-        password
-        <input
-          type="password"
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-      <button type="submit">login</button>
-    </form>
+    <>
+      <form onSubmit={submit}>
+        <div>
+          <label>
+            username
+            <input
+              value={username}
+              onChange={({ target }) => setUsername(target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            password
+            <input
+              type="password"
+              value={password}
+              onChange={({ target }) => setPassword(target.value)}
+            />
+          </label>
+        </div>
+        <button type="submit">login</button>
+      </form>
+    </>
   );
 };
 

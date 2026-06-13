@@ -1,4 +1,17 @@
-const { ApolloServer } = require("@apollo/server");
+require("dotenv").config();
+const connectToDatabase = require("./db");
+const startServer = require("./server");
+
+const MONGODB_URI = process.env.MONGODB_URI;
+const PORT = process.env.PORT || 4000;
+
+const main = async () => {
+  await connectToDatabase(MONGODB_URI);
+  startServer(PORT);
+};
+
+main();
+/* const { ApolloServer } = require("@apollo/server");
 const { startStandaloneServer } = require("@apollo/server/standalone");
 
 let authors = [
@@ -25,7 +38,7 @@ let authors = [
     name: "Sandi Metz", // birthyear not known
     id: "afa5b6f3-344d-11e9-a414-719c6709cf3e",
   },
-];
+]; */
 
 /*
  * Suomi:
@@ -41,7 +54,7 @@ let authors = [
  * Sin embargo, por simplicidad, almacenaremos el nombre del autor en conexión con el libro
  */
 
-let books = [
+/* let books = [
   {
     title: "Clean Code",
     published: 2008,
@@ -92,12 +105,12 @@ let books = [
     genres: ["classic", "revolution"],
   },
 ];
-
+ */
 /*
   you can remove the placeholder query once your first one has been implemented 
 */
 
-const typeDefs = `
+/* const typeDefs = `
 type Author {
   name: String!
   born: Int
@@ -196,4 +209,6 @@ startStandaloneServer(server, {
   listen: { port: 4000 },
 }).then(({ url }) => {
   console.log(`Server ready at ${url}`);
-});
+}); */
+
+//---------------------------------------------
